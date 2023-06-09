@@ -16,7 +16,7 @@ const initialState =
 
 
 const GlobalState = ({ children }) => {
-    const [formInput, setFormInput] = useState(initialState);
+    const [form, setForm] = useState(initialState);
     const [employees, setEmployees] = useState([]);
     const [isEmployeeSaved, setIsEmployeeSaved] = useState(false);
     const [employeeDetails, setEmployeeDetails] = useState(null);
@@ -26,13 +26,13 @@ const GlobalState = ({ children }) => {
 
     async function saveEmployeeToDatabase(e) { // save employee info to the database
         e.preventDefault();  // choose the method and route if edited is false or true
-        const Response = await fetch(employeeEdited ? `http://localhost:5001/employees/employee-update/${formInput._id}` : 'http://localhost:5001/employees/employee-create',
+        const Response = await fetch(employeeEdited ? `http://localhost:5001/employees/employee-update/${form._id}` : 'http://localhost:5001/employees/employee-create',
             {
                 method: employeeEdited ? "PATCH" : "POST", 
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(formInput),
+                body: JSON.stringify(form),
             });
 
         const results = await Response.json(); //
@@ -42,8 +42,8 @@ const GlobalState = ({ children }) => {
         }
     }
     useEffect(() => {
-        if (isEmployeeSaved) { //when is  saved  navigate to the  epmployee -list page
-            setFormInput(initialState);
+        if (isEmployeeSaved) { //when is  saved  navigate to the  epmloyee -list page
+            setForm(initialState);
             navigate("/employees");
         }
     }, [isEmployeeSaved, navigate]);
@@ -64,7 +64,7 @@ const GlobalState = ({ children }) => {
         if (location.pathname === '/employees') { // check a location 
             setIsEmployeeSaved(false); //set employee saved false
             getEmployeeList(); // display list of employees
-            setFormInput(initialState);// clean the form
+            setForm(initialState);// clean the form
             setEmployeeEdited(false); //set edited false 
         }
 
@@ -77,7 +77,7 @@ const GlobalState = ({ children }) => {
         console.log(results);
         if (results) {
             setEmployeeDetails(results);
-            navigate(`employees/${currentId}`) 
+            navigate(`/employees/${currentId}`) 
         }
     }
     async function deleteEmployee(currentId) {
@@ -93,14 +93,14 @@ const GlobalState = ({ children }) => {
 
     function editEmployee(getCurrentDetails) { //Editing employee
         console.log(getCurrentDetails);
-        setFormInput(getCurrentDetails); // Get the new details from the form
+        setForm(getCurrentDetails); // Get the new details from the form
         navigate('/') // Navigate to homepage
         setEmployeeEdited(true);
     }
     return (
         <Context.Provider value={{
-            formInput,
-            setFormInput,
+            form,
+            setForm,
             employees,
             setEmployees,
             isEmployeeSaved,

@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { Typography, CardActions, CardContent, Card, Button } from "@mui/material"
+import { Typography, Button, CardActions, CardContent, Card } from "@mui/material"
 import { Context } from '../context';
 
 
@@ -12,12 +12,12 @@ function OneEmployee({employee}) {
         <Card>
             <CardContent>
                 <Typography>{firstname} {lastname}</Typography>
- 
+
             </CardContent>
             <CardActions>
-                <Button style= {{margin: 10}} color="primary" variant="outlined" onClick={()=>getEmployeeDetailsById(_id)}>Details</Button>
-                <Button style= {{margin: 10}} color="primary" variant="outlined"onClick={()=>editEmployee(employee)}>Edit</Button>
-                <Button style= {{margin: 10}} color="primary" variant="outlined"onClick={()=>deleteEmployee(_id)}>Delete</Button>
+                <Button size="small"style= {{marginLeft: 10}} color="primary"  onClick={()=>getEmployeeDetailsById(_id)}>Details</Button>
+                <Button size="small" style= {{marginLeft: 10}} color="primary" onClick={()=>editEmployee(employee)}>Edit</Button>
+                <Button size="small" style= {{marginLeft: 10}} color="primary" onClick={()=>deleteEmployee(_id)}>Delete</Button>
             </CardActions>
         </Card>
     );

@@ -9,11 +9,13 @@ dotenv.config();
 const app = express()
 
 
-app.use(bodyParser.json({ extended: false }))
-app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
+app.use(bodyParser.json({ extended: true , limit : '20mb' }))
+app.use(bodyParser.urlencoded({ extended: true , limit : '20mb' }))
 app.use(cors())
 
+app.get('/', (req, res)=>{
+    res.send('Welcome to IceCream Factory employees register!')
+})
 
  
 //MongoDB connection
@@ -28,5 +30,6 @@ mongoose.connect(mongoURL, { useNewUrlParser: true , useUnifiedTopology: true})
     });
 }).catch((error) => {
     console.log(error)
+    process.exit(1)
 })
 app.use("/employees", routes);
