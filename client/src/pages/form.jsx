@@ -37,7 +37,7 @@ const formData = [
 
 
 function EmployeeFormInput() {
-    const {formInput, setFormInput, saveEmployeeToDatabase, employeeEdited} = useContext(Context);
+    const {form, setForm, saveEmployeeToDatabase, employeeEdited} = useContext(Context);
     return (
         <Stack className="ag-theme-material" style={ { height: 400, width: 600, margin: 'auto' } }>
             <Typography>Employee Details</Typography>
@@ -52,12 +52,12 @@ function EmployeeFormInput() {
                                 id={field.id}
                                 type={field.type}
                                 fullWidth
-                                value={formInput[field.id]}
+                                value={form[field.id]}
                                 onChange={(e) => 
-                                    setFormInput({
-                                    ...formInput,
+                                    setForm({
+                                    ...form,
                                     [e.target.name]: //Parse salary to int
-                                        field.id === "salary" ? parseInt(e.target.value) : e.target.value
+                                        field.id === "salary" ? parseInt(e.target.value) : e.target.value,
                                 })
                             }
                             /> 

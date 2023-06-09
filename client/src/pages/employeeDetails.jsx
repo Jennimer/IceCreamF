@@ -8,18 +8,18 @@ import { Context } from '../context';
 function EmployeeDetails() {
 
   const {employeeDetails} = useContext(Context)
-  const {  firstname,lastname, department, startdate,
+  const {  firstname ,lastname, department, startdate,
   salary} = employeeDetails;
 
   return(
     <Stack>
     <Card>
-    <CardContent>
+    <CardContent sx={{ height: 80 , margin:8}}>
         <Typography>{firstname} {lastname}</Typography>
        
-        <Typography>Department: {department}</Typography>
-        <Typography>Startdate: {startdate}</Typography>
-        <Typography>Salary: {salary}</Typography>
+        <Typography>Department:  {department}</Typography>
+        <Typography>Startdate:  {startdate}</Typography>
+        <Typography>Salary:  {salary}</Typography>
     </CardContent>
 
 </Card></Stack>
