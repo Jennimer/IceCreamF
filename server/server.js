@@ -21,7 +21,7 @@ app.get('/', (req, res)=>{
 //MongoDB connection
 const PORT = process.env.PORT || 5001
 const mongoose = require('mongoose');
-const mongoURL = 'mongodb+srv://jennimerisalo2:nqbyb9TErC1Inal0@orderdatabase.jt3vaxt.mongodb.net/employeesdb?retryWrites=true&w=majority';
+const mongoURL = $MONGO_ACCESS_URL_ICECREAM;
 mongoose.connect(mongoURL, { useNewUrlParser: true , useUnifiedTopology: true})
 .then(() => {
     console.log('connected to MongoDB')
